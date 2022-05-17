@@ -1,6 +1,6 @@
 
 library(dplyr)
-dtbin <- read.csv("E:/Data Science UM/Semester 5 sesi 2122/WIH3001- Data Science Project/Diabetes Dataset/diabetes_clean_binary_2019.csv",
+dtbin <- read.csv("diabetes_clean_binary_2019.csv",
                   header= TRUE, 
                   sep =",")
 
