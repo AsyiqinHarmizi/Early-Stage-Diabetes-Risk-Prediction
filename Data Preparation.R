@@ -1,7 +1,7 @@
 # Data Preparation (labeled)
 
 # get the data from the directory
-rbfss_2019 <- read.csv("E:/Data Science UM/Semester 5 sesi 2122/WIH3001- Data Science Project/Diabetes Dataset/LLCP2019.csv",
+rbfss_2019 <- read.csv("LLCP2019.csv",
                        header= TRUE, 
                        sep =",")
 
@@ -29,9 +29,6 @@ db <-db_2019
 
 ####### === Diabetes and Other Related Disease Section  === #######
 #Diabetes - Replace values to be more suitable for ML algorithms
-#Change values to ordinal. 0 is for no diabetes, 
-#                          1 is for pre-diabetes or borderline diabetes,
-#                          2 is for yes diabetes
                        
 # Remove all 7 (don't knows)
 # Remove all 9 (refused)
@@ -193,5 +190,5 @@ str(db)
 
 #Save to CSV
 write.csv(db,
-          "E:/Data Science UM/Semester 5 sesi 2122/WIH3001- Data Science Project/Diabetes Dataset/diabetes_clean_2019.csv",
+          "diabetes_clean_2019.csv",
           row.names = FALSE)
