@@ -28,8 +28,7 @@ db_2019 <- db_2019%>% drop_na()
 db <-db_2019
 
 ####### === Diabetes and Other Related Disease Section  === #######
-#Diabetes - Replace values to be more suitable for ML algorithms
-                       
+#Diabetes - Replace values to be more suitable for ML algorithms                 
 # Remove all 7 (don't knows)
 # Remove all 9 (refused)
 db["diabetes"][db["diabetes"] == 3] <- "Healthy"
@@ -39,10 +38,14 @@ db["diabetes"][db["diabetes"] == 4] <- "Prediabetes"
 db <- filter(db, (diabetes!=7) & (diabetes!=9))
 unique(db$diabetes)
 
-#High Blood Pressure - Replace values to only 2 options:
-#     0 for no blood pressure
-#     1 for yes high blood pressure
-#     2 for during pregnancy only
+#For binary value: Combine gestational diabetes, prediabetes and diabetes in 1 group
+#db["diabetes"][db["diabetes"] == 3] <- "Healthy"
+#db["diabetes"][db["diabetes"] == 2] <- "Diabetes"
+#db["diabetes"][db["diabetes"] == 1] <- "Diabetes"
+#db["diabetes"][db["diabetes"] == 4] <- "Diabetes"
+
+
+#High Blood Pressure - Replace values 
 #     Remove all 7 (don't knows)
 #     Remove all 9 (refused)
 db$blood_pressure[db["blood_pressure"] == 1] <- "Yes"
@@ -72,7 +75,7 @@ db$heartDiseaseAttack[db["heartDiseaseAttack"] == 2] <- "No"
 ####### ===  LifeStyle Section  === #######
 
 #Heavy drinker - Replace values
-# Change 1 to 0 (1 was no for heavy drinking). change all 2 to 1 (2 was yes for heavy drinking)
+# Change 1 to "No" for heavy drinking. change all 2 to "Yes" for heavy drinking
 # remove all don't knows and missing 9
 
 db["HvyAlchoholconsump"][db["HvyAlchoholconsump"] == 1] <- "No"
@@ -189,6 +192,5 @@ summary(db)
 str(db)
 
 #Save to CSV
-write.csv(db,
-          "diabetes_clean_2019.csv",
-          row.names = FALSE)
+write.csv(db, "diabetes_clean_2019.csv", row.names = FALSE)
+#write.csv(db, "diabetes_clean_binary_2019.csv", row.names = FALSE)
